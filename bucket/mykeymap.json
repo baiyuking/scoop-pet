@@ -1,0 +1,42 @@
+{
+    "version": "2.0-beta30",
+    "description": "MyKeymap 是一个强大的键盘映射工具，提供丰富的功能和配置选项。",
+    "homepage": "https://github.com/xianyukang/MyKeymap",
+    "license": {
+        "identifier": "GPL-2.0",
+        "url": "https://github.com/xianyukang/MyKeymap/blob/main/LICENSE"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/xianyukang/MyKeymap/releases/download/v2.0-beta30/MyKeymap-2.0-beta30.7z",
+            "hash": "df2c5b0b88ab6f7ec81c9a40b5e81990b441ddc5a63a550c216c556d940ca690"
+        }
+    },
+    "pre_install": [
+        "7z x \"$dir\\MyKeymap-2.0-beta30.7z\" -o\"$dir\" -y > $null 2>&1",
+        "Get-ChildItem \"$dir\\MyKeymap-2.0-beta30\\*\" -Recurse | ForEach-Object { Move-Item $_.FullName -Destination \"$dir\" -Force }",
+        "Remove-Item \"$dir\\MyKeymap-2.0-beta30\" -Recurse -Force",
+        "if (Test-Path \"$dir\\MyKeymap-2.0-beta30.7z\") { Remove-Item \"$dir\\MyKeymap-2.0-beta30.7z\" -Force }"
+    ],
+    "bin": "MyKeymap.exe",
+    "shortcuts": [
+        [
+            "MyKeymap.exe",
+            "MyKeymap"
+        ]
+    ],
+    "persist": [
+        "data"
+    ],
+    "checkver": {
+        "url": "https://github.com/xianyukang/MyKeymap/releases.atom",
+        "regex": "/releases/tag/([\\d]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/xianyukang/MyKeymap/releases/download/$version/MyKeymap-$version.7z"
+            }
+        }
+    }
+}
