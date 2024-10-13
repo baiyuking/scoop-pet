@@ -1,0 +1,37 @@
+{
+    "version": "1.4.0",
+    "description": "一个简单的游戏存档管理器",
+    "homepage": "https://help.sworld.club/",
+    "license": "AGPL-3.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://ghp.ci/github.com/mcthesw/game-save-manager/releases/download/v1.4.0/RGSM_1.4.0_x64-portable.zip",
+            "hash": "0FFBD404F1F7B0838E6C5F1BCF7E777417598E6724FA70A93841809ED4477F07"
+        }
+    },
+    "persist": [
+        "save_data",
+        "GameSaveManager.config.json"
+    ],
+    "bin": "rgsm.exe",
+    "shortcuts": [
+        [
+            "rgsm.exe",
+            "存档管理器"
+        ]
+    ],
+    "checkver": {
+        "url": "https://github.com/mcthesw/game-save-manager/releases",
+        "regex": "download/v(?<release>[\\w-.]+)/RGSM_(?<version>[\\d.]+)_x64-portable\\.zip"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://ghp.ci/github.com/mcthesw/game-save-manager/releases/download/v$relesase/RGSM_$version_x64-portable.zip"
+            }
+        },
+        "hash": {
+            "url": "$url.DIGEST"
+        }
+    }
+}
